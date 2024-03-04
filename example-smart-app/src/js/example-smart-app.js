@@ -26,7 +26,7 @@
           var fname = '';
           var lname = '';
           if (typeof patient.name[0] !== 'undefined') {
-            name = patient.name[0].text.join(' ');
+            name = patient.name[0].text;
             fname = patient.name[0].given.join(' ');
             lname = patient.name[0].family.join(' ');
           }
