@@ -54,7 +54,7 @@
           //p.hdl = getQuantityValueAndUnit(hdl[0]);
           //p.ldl = getQuantityValueAndUnit(ldl[0]);
 
-          populatObservationTable(obv);
+          populateObservationTable(obv);
           
           ret.resolve(p);
         });
