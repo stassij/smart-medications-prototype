@@ -64,13 +64,13 @@
 
   function populateActiveMedicationTable(meds){
     $('#medsTable').empty();
-    $('#medsTable').append("<tr><th>ACTIVE MEDICATION</th><th>Status</th><th>Date Written</th><th>Date Ended</th></tr>");
+    $('#medsTable').append("<tr><th>ACTIVE MEDICATION</th><th>Prescriber</th><th>Status</th><th>Date Written</th><th>Date Ended</th></tr>");
     
     for(var i in meds){
       var med = meds[i]
       console.log(med)
       if(med.status == 'active'){
-        var row = "<tr><td>" + med.medicationCodeableConcept.text + "</td><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
+        var row = "<tr><td>" + med.medicationCodeableConcept.text + "</td><td>" + med.prescriber.name[0].text + "</td><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
         $('#medsTable').append(row);
       }
     }
