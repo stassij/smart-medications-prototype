@@ -24,7 +24,7 @@
                   });
         $.when(pt, meds).fail(onError);
 
-        $.when(pt, obv, meds).done(function(patient, observations, medications) {
+        $.when(pt, meds).done(function(patient, medications) {
           //var byCodes = smart.byCodes(obv, 'code');
           console.log(patient);
           var name = '';
