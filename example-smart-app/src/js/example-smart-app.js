@@ -14,10 +14,12 @@
         var obv = smart.patient.api.fetchAll( {
                     type: 'Observation'
                   });
+        var meds = smart.patient.api.fetchAll( {
+                    type: 'MedicationOrder'
+                  });
+        $.when(pt, meds).fail(onError);
 
-        $.when(pt, obv).fail(onError);
-
-        $.when(pt, obv).done(function(patient, observations) {
+        $.when(pt, obv, meds).done(function(patient, observations, medications) {
           //var byCodes = smart.byCodes(obv, 'code');
           console.log(patient);
           var gender = patient.gender;
@@ -52,7 +54,7 @@
 
           //p.hdl = getQuantityValueAndUnit(hdl[0]);
           //p.ldl = getQuantityValueAndUnit(ldl[0]);
-
+          populateMedicationTable(medications);
           populateObservationTable(observations);
           
           ret.resolve(p);
@@ -81,10 +83,23 @@
     };
   }
 
+  function populateMedicationTable(meds){
+    $('#medsTable').empty();
+    $('#medsTable').append("<tr><th>Status</th><th>Date Written</th><th>Date Ended</th>");
+    console.log(meds)
+    for(var i in meds){
+      var med = meds[i]
+      if(med.valueQuantity){
+        var row = "<tr><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
+        $('#medsTable').append(row);
+      }
+    }
+  }
+
   function populateObservationTable(obs){
     $('#obsTable').empty();
     $('#obsTable').append("<tr><th>Text</th><th>Value</th><th>Unit</th>");
-    console.log(obs)
+    
     for(var i in obs){
       var ob = obs[i]
       if(ob.valueQuantity){
