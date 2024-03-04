@@ -7,17 +7,17 @@
       ret.reject();
     }
 
-    function onReady(smart)  {
+    function onReady(smart) {
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
-        var obv = smart.patient.api.fetchAll({
+        var obv = smart.patient.api.fetchAll( {
                     type: 'Observation'
                   });
 
         $.when(pt, obv).fail(onError);
 
-        $.when(pt, obv).done(function(patient, obv) {
+        $.when(pt, obv).done(function(patient, observations) {
           //var byCodes = smart.byCodes(obv, 'code');
           console.log(patient);
           var gender = patient.gender;
@@ -53,7 +53,7 @@
           //p.hdl = getQuantityValueAndUnit(hdl[0]);
           //p.ldl = getQuantityValueAndUnit(ldl[0]);
 
-          populateObservationTable(obv);
+          populateObservationTable(observations);
           
           ret.resolve(p);
         });
