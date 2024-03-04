@@ -86,13 +86,12 @@
   function populateMedicationTable(meds){
     $('#medsTable').empty();
     $('#medsTable').append("<tr><th>Status</th><th>Date Written</th><th>Date Ended</th>");
-    console.log(meds)
+    
     for(var i in meds){
       var med = meds[i]
-      if(med.valueQuantity){
-        var row = "<tr><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
-        $('#medsTable').append(row);
-      }
+      console.log(med)
+      var row = "<tr><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
+      $('#medsTable').append(row);
     }
   }
 
