@@ -12,11 +12,6 @@
         
         var patient = smart.patient;
         var pt = patient.read();
-
-        //var obv = smart.patient.api.fetchAll( {
-        //            type: 'Observation'
-        //          });
-        //$.when(pt, obv).fail(onError);
         
         var meds = smart.patient.api.fetchAll( {
                     type: 'MedicationOrder'
