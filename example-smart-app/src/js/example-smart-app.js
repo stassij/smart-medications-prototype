@@ -62,27 +62,27 @@
     };
   }
 
-  function populateActiveMedicationTable(meds){
+  function populateActiveMedicationTable(meds) {
     $('#medsTable').empty();
     $('#medsTable').append("<tr><th>ACTIVE MEDICATION</th><th>Prescriber</th><th>Status</th><th>Date Written</th><th>Date Ended</th></tr>");
     
-    for(var i in meds){
+    for(var i in meds) {
       var med = meds[i]
       console.log(med)
-      if(med.status == 'active'){
+      if(med.status == 'active') {
         var row = "<tr><td>" + med.medicationCodeableConcept.text + "</td><td>" + med.prescriber + "</td><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
         $('#medsTable').append(row);
       }
     }
   }
 
-  function populateObservationTable(obs){
+  function populateObservationTable(obs) {
     $('#obsTable').empty();
     $('#obsTable').append("<tr><th>Text</th><th>Value</th><th>Unit</th>");
     
-    for(var i in obs){
+    for(var i in obs) {
       var ob = obs[i]
-      if(ob.valueQuantity){
+      if(ob.valueQuantity) {
         var row = "<tr><td>" + ob.code.text + "</td><td>" + ob.valueQuantity.value + "</td><td>" + ob.valueQuantity.unit + "</td></tr>";
         $('#obsTable').append(row);
       }
@@ -91,8 +91,8 @@
 
   function getBloodPressureValue(BPObservations, typeOfPressure) {
     var formattedBPObservations = [];
-    BPObservations.forEach(function(observation){
-      var BP = observation.component.find(function(component){
+    BPObservations.forEach(function(observation) {
+      var BP = observation.component.find(function(component) {
         return component.code.coding.find(function(coding) {
           return coding.code == typeOfPressure;
         });
