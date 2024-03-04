@@ -75,7 +75,7 @@
       var med = meds[i]
       console.log(med)
       if(med.status == 'active'){
-        var row = "<tr><td>" + med.medicationCodeableConcept.text + "</td><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td><td>" + med.dosageInstruction.text + "</td></tr>";
+        var row = "<tr><td>" + med.medicationCodeableConcept.text + "</td><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td><td>" + med.dosageInstruction + "</td></tr>";
         $('#medsTable').append(row);
       }
     }
