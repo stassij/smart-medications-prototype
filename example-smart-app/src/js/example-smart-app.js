@@ -54,7 +54,7 @@
 
           //p.hdl = getQuantityValueAndUnit(hdl[0]);
           //p.ldl = getQuantityValueAndUnit(ldl[0]);
-          populateMedicationTable(medications);
+          populateActiveMedicationTable(medications);
           populateObservationTable(observations);
           
           ret.resolve(p);
@@ -83,15 +83,17 @@
     };
   }
 
-  function populateMedicationTable(meds){
+  function populateActiveMedicationTable(meds){
     $('#medsTable').empty();
     $('#medsTable').append("<tr><th>Status</th><th>Date Written</th><th>Date Ended</th>");
     
     for(var i in meds){
       var med = meds[i]
       console.log(med)
-      var row = "<tr><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
-      $('#medsTable').append(row);
+      if(med.status == 'active'){
+        var row = "<tr><td>" + med.status + "</td><td>" + med.dateWritten + "</td><td>" + med.dateEnded + "</td></tr>";
+        $('#medsTable').append(row);
+      }
     }
   }
 
