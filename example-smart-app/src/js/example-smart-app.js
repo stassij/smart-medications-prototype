@@ -22,13 +22,15 @@
         $.when(pt, obv, meds).done(function(patient, observations, medications) {
           //var byCodes = smart.byCodes(obv, 'code');
           console.log(patient);
-          var gender = patient.gender;
+          var name = '';
           var fname = '';
           var lname = '';
           if (typeof patient.name[0] !== 'undefined') {
+            name = patient.name[0].text.join(' ');
             fname = patient.name[0].given.join(' ');
             lname = patient.name[0].family.join(' ');
           }
+          var gender = patient.gender;
 
           //var height = byCodes('8302-2');
           //var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
@@ -37,10 +39,11 @@
           //var ldl = byCodes('2089-1');
           
           var p = defaultPatient();
-          p.birthdate = patient.birthDate;
-          p.gender = gender;
+          p.name = name;
           p.fname = fname;
           p.lname = lname;
+          p.gender = gender;
+          p.birthdate = patient.birthDate;
           
           //p.height = getQuantityValueAndUnit(height[0]);
 
@@ -54,8 +57,9 @@
 
           //p.hdl = getQuantityValueAndUnit(hdl[0]);
           //p.ldl = getQuantityValueAndUnit(ldl[0]);
+          
           populateActiveMedicationTable(medications);
-          populateObservationTable(observations);
+          //populateObservationTable(observations);
           
           ret.resolve(p);
         });
