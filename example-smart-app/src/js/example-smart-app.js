@@ -34,7 +34,7 @@
           //var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           //var hdl = byCodes('2085-9');
           //var ldl = byCodes('2089-1');
-
+          
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
           p.gender = gender;
@@ -54,6 +54,8 @@
           //p.hdl = getQuantityValueAndUnit(hdl[0]);
           //p.ldl = getQuantityValueAndUnit(ldl[0]);
 
+          populatObservationTable(obv);
+          
           ret.resolve(p);
         });
       } else {
@@ -78,6 +80,19 @@
       //ldl: {value: ''},
       //hdl: {value: ''},
     };
+  }
+
+  function populateObservationTable(obs){
+    $('#obsTable').empty();
+    $('#obsTable').append("<tr><th>Text</th><th>Value</th><th>Unit</th>");
+    console.log(obs)
+    for(var i in obs){
+      var ob = obs[i]
+      if(ob.valueQuantity){
+        var row = "<tr><td>" + ob.code.text + "</td><td>" + ob.valueQuantity.value + "</td><td>" + ob.valueQuantity.unit + "</td></tr>";
+        $('#obsTable').append(row);
+      }
+    }
   }
 
   function getBloodPressureValue(BPObservations, typeOfPressure) {
