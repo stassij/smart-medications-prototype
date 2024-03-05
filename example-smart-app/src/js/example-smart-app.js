@@ -8,17 +8,18 @@
     }
 
     function onReady(smart) {
-      if (smart.hasOwnProperty('patient')) {
+      if (smart.hasOwnProperty('patient')) { 
         
         var patient = smart.patient;
         var pt = patient.read();
         
-        var meds = smart.patient.api.fetchAll( {
+        var meds = smart.patient.api.fetchAll( { 
                     type: 'MedicationOrder'
                   });
-        $.when(pt, meds).fail(onError);
+        
+        $.when(pt, meds).fail(onError); 
 
-        $.when(pt, meds).done(function(patient, medications) {
+        $.when(pt, meds).done(function(patient, medications) { 
           
           console.log(patient);
           var name = '';
