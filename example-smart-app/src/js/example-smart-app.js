@@ -37,6 +37,7 @@
           p.lname = lname;
           p.gender = gender;
           p.birthdate = patient.birthDate;
+          p.json = JSON.stringify(patient);
           
           populateActiveMedicationTable(medications);
           
@@ -58,7 +59,8 @@
       fname: {value: ''},
       lname: {value: ''},
       gender: {value: ''},
-      birthdate: {value: ''}
+      birthdate: {value: ''},
+      json: {value: ''}
     };
   }
 
@@ -125,6 +127,7 @@
     $('#lname').html(p.lname);
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
+    $('#json').html(p.json);
   };
 
 })(window);
