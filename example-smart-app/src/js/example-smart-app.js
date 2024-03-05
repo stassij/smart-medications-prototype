@@ -37,7 +37,7 @@
           p.lname = lname;
           p.gender = gender;
           p.birthdate = patient.birthDate;
-          p.json = JSON.stringify(pt);
+          p.json = JSON.stringify(patient, undefined, 4);
           
           populateActiveMedicationTable(medications);
           
